@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://0i66w7c4bfxx"]
+
+[ext_resource type="Script" path="res://Menus/in_game_menu.gd" id="1_ixfu3"]
+[ext_resource type="FontFile" uid="uid://c1576a1gf1vms" path="res://Font/PolarisHRInstanced_font.ttf" id="2_ckyyn"]
+
+[node name="InGameMenu" type="CanvasLayer"]
+script = ExtResource("1_ixfu3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -244.0
+offset_bottom = 41.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="Score" type="Label" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckyyn")
+text = "SCORE: 000"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="HightScore" type="Label" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ckyyn")
+text = "HIGHT SCORE: 000"

@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://bcyy56jsptrx6"]
+
+[ext_resource type="Script" path="res://Scenes/start_world.gd" id="1_ep2sw"]
+[ext_resource type="PackedScene" uid="uid://d3hpaos8smxnp" path="res://Enemy/enemy.tscn" id="3_3ijlt"]
+[ext_resource type="Script" path="res://Scenes/PauseManager.gd" id="4_dc1nm"]
+[ext_resource type="PackedScene" uid="uid://cx1ph8cfsnkl4" path="res://Player/player.tscn" id="4_gj4qu"]
+[ext_resource type="PackedScene" uid="uid://cd6ta57gi5xir" path="res://Asteroid/asteroid.tscn" id="5_5x4ae"]
+[ext_resource type="Texture2D" uid="uid://bo4wokhwtg3cy" path="res://Sprites/Background/Space Background (3).png" id="5_bh4f5"]
+[ext_resource type="PackedScene" uid="uid://bdileo0fhun6b" path="res://Exit/exit.tscn" id="7_yp67m"]
+[ext_resource type="PackedScene" uid="uid://0i66w7c4bfxx" path="res://Menus/in_game_menu.tscn" id="8_4e2i1"]
+[ext_resource type="AudioStream" uid="uid://b5semjcrvjuyf" path="res://Sounds/Magic Fx 7.ogg" id="9_0ip6e"]
+[ext_resource type="Shader" path="res://Shaders/start_world.gdshader" id="11_uvx6m"]
+[ext_resource type="PackedScene" uid="uid://gcml0mmlexit" path="res://Menus/pause_menu.tscn" id="13_f8amd"]
+
+[sub_resource type="Curve2D" id="Curve2D_sq0lc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 1000, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, -1, 1)
+}
+point_count = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66xhj"]
+shader = ExtResource("11_uvx6m")
+
+[node name="StartWorld" type="Node2D"]
+script = ExtResource("1_ep2sw")
+asteroid_scene = ExtResource("5_5x4ae")
+enemy_scenes = Array[PackedScene]([ExtResource("3_3ijlt")])
+big_enemy_scenes = ExtResource("3_3ijlt")
+exit_score = 30
+
+[node name="PauseManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("4_dc1nm")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(514, 302)
+scale = Vector2(1.04667, 1.04667)
+texture = ExtResource("5_bh4f5")
+
+[node name="Exit" parent="." instance=ExtResource("7_yp67m")]
+position = Vector2(520, 535)
+next_scene = "res://Scenes/second_world.tscn"
+
+[node name="Player" parent="." instance=ExtResource("4_gj4qu")]
+position = Vector2(515, 351)
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawn" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+
+[node name="BigEnemyTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(515, 351)
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sq0lc")
+
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(-1, 1)
+rotation = -0.785398
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="BigEnemyContainer" type="Node2D" parent="."]
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_0ip6e")
+bus = &"Music"
+
+[node name="InGameMenu" parent="." instance=ExtResource("8_4e2i1")]
+offset = Vector2(-15, 10)
+transform = Transform2D(1, 0, 0, 1, -15, 10)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_66xhj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("13_f8amd")]
+process_mode = 2
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="BigEnemyTimer" to="." method="_on_big_enemy_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Resume" to="PauseManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Menu" to="PauseManager" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Exit" to="PauseManager" method="_on_exit_pressed"]
+
+[editable path="CanvasLayer/Pause menu"]

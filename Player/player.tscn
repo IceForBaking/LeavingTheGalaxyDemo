@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx1ph8cfsnkl4"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_7k5oq"]
+[ext_resource type="SpriteFrames" uid="uid://ct0g0yfsoi5gx" path="res://Player/Player.tres" id="2_oiqdb"]
+[ext_resource type="AudioStream" uid="uid://bdvmu02tvdack" path="res://Sounds/521105__matrixxx__retro-explosion-07.wav" id="3_3cjgv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnlab"]
+radius = 47.1699
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vbku"]
+radius = 53.9351
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_7k5oq")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_oiqdb")
+animation = &"explotion"
+frame = 70
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_mnlab")
+
+[node name="PickupArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_1vbku")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3cjgv")
+bus = &"Effects"
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

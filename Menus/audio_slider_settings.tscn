@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu8f1vxu888bt"]
+
+[ext_resource type="FontFile" uid="uid://c1576a1gf1vms" path="res://Font/PolarisHRInstanced_font.ttf" id="1_vgcqb"]
+[ext_resource type="Script" path="res://Menus/audio_slider_settings.gd" id="1_xulma"]
+
+[node name="Audio_Slider_Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xulma")
+bus_name = "Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+
+[node name="Audio_Name" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vgcqb")
+theme_override_font_sizes/font_size = 25
+text = "Master Volume"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.001
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Audio_Num" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vgcqb")
+theme_override_font_sizes/font_size = 25
+text = "99.5
+"

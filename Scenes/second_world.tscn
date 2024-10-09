@@ -1,0 +1,321 @@
+[gd_scene load_steps=39 format=3 uid="uid://b5wqyeismbyoe"]
+
+[ext_resource type="Script" path="res://Scenes/start_world.gd" id="1_e15e7"]
+[ext_resource type="PackedScene" uid="uid://bdileo0fhun6b" path="res://Exit/exit.tscn" id="2_ieccp"]
+[ext_resource type="PackedScene" uid="uid://cd6ta57gi5xir" path="res://Asteroid/asteroid.tscn" id="3_mm61i"]
+[ext_resource type="PackedScene" uid="uid://d3hpaos8smxnp" path="res://Enemy/enemy.tscn" id="4_18yan"]
+[ext_resource type="Texture2D" uid="uid://bj6ioq6pcknj3" path="res://Sprites/Background/Space Background (4).png" id="4_ni8og"]
+[ext_resource type="PackedScene" uid="uid://b03qiwav8dfsk" path="res://Enemy/second_enemy.tscn" id="4_o6mba"]
+[ext_resource type="Script" path="res://Scenes/PauseManager.gd" id="5_j3log"]
+[ext_resource type="Texture2D" uid="uid://208ck4n8urlp" path="res://Sprites/Background/Starry background - Layer X - Big Star 2.png" id="6_f8tre"]
+[ext_resource type="Texture2D" uid="uid://jov7mjt73lmb" path="res://Sprites/Background/Starry background - Layer X - Big Star.png" id="7_0nl1h"]
+[ext_resource type="PackedScene" uid="uid://cx1ph8cfsnkl4" path="res://Player/player.tscn" id="8_m8cke"]
+[ext_resource type="PackedScene" uid="uid://0i66w7c4bfxx" path="res://Menus/in_game_menu.tscn" id="9_5x07x"]
+[ext_resource type="PackedScene" uid="uid://b16flgpgnxxtd" path="res://Traps/black_hole.tscn" id="10_x43mn"]
+[ext_resource type="AudioStream" uid="uid://2b8hgk30cd0q" path="res://Sounds/9. Space Invaders.wav" id="11_lvy67"]
+[ext_resource type="Shader" path="res://Shaders/start_world.gdshader" id="13_qox3g"]
+[ext_resource type="PackedScene" uid="uid://gcml0mmlexit" path="res://Menus/pause_menu.tscn" id="14_hdyqx"]
+[ext_resource type="PackedScene" uid="uid://by13ycwu45hhw" path="res://Traps/path_enemy.tscn" id="15_sulwh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yumln"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n75s3"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa7jx"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o2uj"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc44h"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x77d2"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlmmh"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikxdv"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcqsp"]
+atlas = ExtResource("6_f8tre")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mk3oj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yumln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n75s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa7jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o2uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc44h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x77d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlmmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikxdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcqsp")
+}],
+"loop": true,
+"name": &"Flashing",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1h2k"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4so66"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hvhk"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsqwr"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp31k"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q40p1"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7o2l"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w0oq"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o81il"]
+atlas = ExtResource("7_0nl1h")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sx0yf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1h2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4so66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hvhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsqwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp31k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q40p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7o2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w0oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o81il")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve2D" id="Curve2D_sq0lc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 1000, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, -1, 1)
+}
+point_count = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66xhj"]
+shader = ExtResource("13_qox3g")
+
+[node name="StartWorld" type="Node2D"]
+script = ExtResource("1_e15e7")
+asteroid_scene = ExtResource("3_mm61i")
+enemy_scenes = Array[PackedScene]([ExtResource("4_18yan"), ExtResource("4_o6mba")])
+big_enemy_scenes = ExtResource("4_18yan")
+exit_score = 65
+
+[node name="PauseManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("5_j3log")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(501, 299)
+scale = Vector2(1.01333, 1.01333)
+texture = ExtResource("4_ni8og")
+
+[node name="Star" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(395.725, -209.211)
+scale = Vector2(0.261243, 0.268727)
+sprite_frames = SubResource("SpriteFrames_mk3oj")
+animation = &"Flashing"
+
+[node name="Star2" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(-275.33, -251.646)
+scale = Vector2(0.285856, 0.303613)
+sprite_frames = SubResource("SpriteFrames_mk3oj")
+animation = &"Flashing"
+autoplay = "Flashing"
+
+[node name="Star3" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(-343.422, 188.487)
+scale = Vector2(0.277223, 0.279628)
+sprite_frames = SubResource("SpriteFrames_mk3oj")
+animation = &"Flashing"
+autoplay = "Flashing"
+
+[node name="Star4" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(352.304, 158.882)
+scale = Vector2(0.25234, 0.254957)
+sprite_frames = SubResource("SpriteFrames_mk3oj")
+animation = &"Flashing"
+autoplay = "Flashing"
+
+[node name="Star5" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(-94.7373, 88.816)
+scale = Vector2(0.182906, 0.209022)
+sprite_frames = SubResource("SpriteFrames_mk3oj")
+animation = &"Flashing"
+autoplay = "Flashing"
+
+[node name="SecondStar" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(257.567, -159.869)
+scale = Vector2(0.128633, 0.128633)
+sprite_frames = SubResource("SpriteFrames_sx0yf")
+autoplay = "default"
+
+[node name="SecondStar2" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(99.6714, -203.29)
+scale = Vector2(0.144874, 0.144874)
+sprite_frames = SubResource("SpriteFrames_sx0yf")
+autoplay = "default"
+
+[node name="SecondStar3" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(-387.83, -4.9342)
+scale = Vector2(0.142133, 0.142133)
+sprite_frames = SubResource("SpriteFrames_sx0yf")
+autoplay = "default"
+
+[node name="SecondStar4" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(56.2502, 209.211)
+scale = Vector2(0.133909, 0.133909)
+sprite_frames = SubResource("SpriteFrames_sx0yf")
+autoplay = "default"
+
+[node name="SecondStar5" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(123.356, 64.1448)
+scale = Vector2(0.120203, 0.120203)
+sprite_frames = SubResource("SpriteFrames_sx0yf")
+autoplay = "default"
+
+[node name="Exit" parent="." instance=ExtResource("2_ieccp")]
+modulate = Color(0.647059, 0.996078, 0.537255, 1)
+position = Vector2(520, 535)
+next_scene = "res://Scenes/third_world.tscn"
+
+[node name="Player" parent="." instance=ExtResource("8_m8cke")]
+position = Vector2(515, 351)
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemySpawn" type="Timer" parent="."]
+autostart = true
+
+[node name="BigEnemyTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(515, 351)
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sq0lc")
+
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(-1, 1)
+rotation = -0.785398
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="BigEnemyContainer" type="Node2D" parent="."]
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_lvy67")
+bus = &"Music"
+
+[node name="InGameMenu" parent="." instance=ExtResource("9_5x07x")]
+offset = Vector2(-15, 10)
+transform = Transform2D(1, 0, 0, 1, -15, 10)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_66xhj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause menu" parent="CanvasLayer" instance=ExtResource("14_hdyqx")]
+process_mode = 2
+
+[node name="enemy_sphere" parent="." instance=ExtResource("15_sulwh")]
+position = Vector2(276, -168)
+
+[node name="BlackHole" parent="." instance=ExtResource("10_x43mn")]
+position = Vector2(200, 264)
+
+[node name="BlackHole2" parent="." instance=ExtResource("10_x43mn")]
+position = Vector2(840, 264)
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_enemy_spawn_timeout"]
+[connection signal="timeout" from="BigEnemyTimer" to="." method="_on_big_enemy_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Resume" to="PauseManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Menu" to="PauseManager" method="_on_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause menu/Panel/VBoxContainer/Exit" to="PauseManager" method="_on_exit_pressed"]
+
+[editable path="CanvasLayer/Pause menu"]
